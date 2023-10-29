@@ -8,10 +8,6 @@ using System.IO;
 using Domain;
 using Management;
 
-
-
-
-
 namespace AstroMatch
 {
 
@@ -32,7 +28,8 @@ namespace AstroMatch
             userManager.AgregarUsuario(newUser);
             string extension = Path.GetExtension(fileUploadProfilePicture.FileName);
             string fileName = Guid.NewGuid().ToString() + extension;
-            string uploadFolder = @"C:\Users\Aleja\source\repos\AstroMatch\AstroMatch\";
+            string rutaCarpetaRaiz = Server.MapPath("~");
+            string uploadFolder = rutaCarpetaRaiz;
             string filePath = Path.Combine(uploadFolder, fileName);
             fileUploadProfilePicture.SaveAs(filePath);
             UrlImageManager urlImageManager = new UrlImageManager();

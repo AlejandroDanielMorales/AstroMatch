@@ -7,8 +7,9 @@
             <div class="col-md-3">
               
                           <div class="card text-white mb-3" runat="server" id="divCurrentUserCard" style="max-width: 18rem;">
+                              <center>
                                  <img src='<%#currentUser.ProfilePhoto.Url%>' class="card-img-top" alt="Foto de perfil" style="border-radius: 50%;" />
-    
+                                 </center>
                                 <div class="card-body">
                                     <h5 class="card-title" id="userFullName" runat="server"></h5>
                                     <p class="card-text" id="userSign" runat="server"></p>
@@ -29,7 +30,9 @@
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <center>
                                         <div class='<%# GetCardCssClass(Eval("UserSign.Element").ToString())%>' style="max-width: 18rem;">
+                                            <center>
                                            <img src='<%# Eval("ProfilePhoto.Url")%>' alt="Usuario's Foto" style="width: 100px; height: 100px; border-radius: 50%;" />
+                                            </center>
                                             <h3><%# Eval("Name") %> <%# Eval("HalfName") %></h3>
                                             <p>Email: <%# Eval("Email") %></p>
                                             <p>Date of Birth: <%# Eval("DateOfBirth") %></p>

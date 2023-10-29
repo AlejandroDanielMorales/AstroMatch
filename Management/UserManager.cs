@@ -10,15 +10,15 @@ namespace Management
 {
     public class UserManager
     {
-        private DataManager dataManager;
 
         public UserManager()
         {
-            dataManager = new DataManager();
+           
         }
 
         public User GetUserById(int id)
         {
+            DataManager dataManager = new DataManager();
             UrlImageManager urlImageManager = new UrlImageManager();
             dataManager.setQuery("SELECT * FROM Usuarios WHERE Id = @Id");
             dataManager.setParameter("@Id", id);
@@ -65,14 +65,16 @@ namespace Management
         {
             List<User> users = new List<User>();
             UrlImageManager urlImageManager = new UrlImageManager();
-            
+            DataManager dataManager = new DataManager();
+
             dataManager.ClearCommand();
             dataManager.setQuery("SELECT * FROM Usuarios");
             dataManager.executeRead();
 
             while (dataManager.Lector.Read())
             {
-                UrlImage urlImage = urlImageManager.UserProfilePhoto((int)dataManager.Lector["Id"]);
+                UrlImage urlImage = new UrlImage();
+                urlImage = urlImageManager.UserProfilePhoto((int)dataManager.Lector["Id"]);
                 User user = new User();
                 user.setIdUser((int)dataManager.Lector["Id"]);
                 user.Name = (string)dataManager.Lector["Nombre"];
@@ -120,6 +122,7 @@ namespace Management
         }
         public void AgregarUsuario(User user)
         {
+            DataManager dataManager = new DataManager();
             // Genera una nueva sal para el usuario.
             user.GenerateHashAndSalt();
 
@@ -144,7 +147,7 @@ namespace Management
         }
         public User GetUserByEmail(string email)
         {
-
+            DataManager dataManager = new DataManager();
             UrlImageManager urlImageManager = new UrlImageManager();
             dataManager.ClearCommand();
             string consulta = "SELECT * FROM Usuarios WHERE CorreoElectronico = @Email";
